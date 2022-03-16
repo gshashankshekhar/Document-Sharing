@@ -28,7 +28,7 @@ exports.signup = (req, res) => {
           });
         });
       } else {
-        // user role = 1
+        // user role = 1..
         user.setRoles([1]).then(() => {
           res.send({ message: "User was registered successfully!" });
         });
