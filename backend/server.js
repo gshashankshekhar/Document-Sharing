@@ -1,33 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+
+//database
 const db = require("./app/models");
-
-
-const app = express();
 const Role = db.role;
 
-db.sequelize.sync({force: true}).then(() => {
-  console.log('Drop and Resync Db');
-  initial();
-});
+const app = express();
 
-function initial() {
-  Role.create({
-    id: 1,
-    name: "user"
-  });
- 
-  Role.create({
-    id: 2,
-    name: "reviewer"
-  });
- 
-  Role.create({
-    id: 3,
-    name: "admin"
-  });
-}
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -37,11 +17,12 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
+db.sequelize.sync();
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "User Login For Doc Sharing Platform." });
 });
-
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);

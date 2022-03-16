@@ -29,7 +29,7 @@ isAdmin = (req, res, next) => {
         }
       }
       res.status(403).send({
-        message: "Require Admin Role!"
+        message: "Need Admin Role!"
       });
       return;
     });
@@ -45,7 +45,7 @@ isReviewer = (req, res, next) => {
         }
       }
       res.status(403).send({
-        message: "Require Reviewer Role!"
+        message: "Need Reviewer Role!"
       });
     });
   });
@@ -64,7 +64,7 @@ isReviewerOrAdmin = (req, res, next) => {
         }
       }
       res.status(403).send({
-        message: "Require Reviewer or Admin Role!"
+        message: "Need Reviewer or Admin Role!"
       });
     });
   });
