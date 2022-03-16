@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav'
+import axios from 'axios'
+
 const Login = props => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,8 +13,19 @@ const Login = props => {
         e.preventDefault();
         const newEntry = { email: email, password: password };
         setAllEntry([...allEntry, newEntry]);
-        console.log(allEntry);
+        console.log("------", allEntry, newEntry);
+        const headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000'
+        };
+        axios.post('http://localhost:3001/test/form', newEntry, { headers })
+            .then(res => {
+                console.log(res)
+            }).catch((err) => {
+                console.log(err)
+            })
     }
+
 
     return (
         <>
