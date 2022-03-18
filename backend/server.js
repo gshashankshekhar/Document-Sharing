@@ -10,7 +10,7 @@ const app = express();
 
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:3000"
 };
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
@@ -19,6 +19,30 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 db.sequelize.sync();
+
+// for  first time initialise roles table
+// db.sequelize.sync({force: true}).then(() => {
+//   console.log('Drop and Resync Db');
+//   initial();
+// });
+
+// function initial() {
+//   Role.create({
+//     id: 1,
+//     name: "user"
+//   });
+ 
+//   Role.create({
+//     id: 2,
+//     name: "Reviewer"
+//   });
+ 
+//   Role.create({
+//     id: 3,
+//     name: "admin"
+//   });
+// }
+
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "User Login For Doc Sharing Platform." });
