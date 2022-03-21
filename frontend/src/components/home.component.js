@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import UserService from "../services/user.service";
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -8,10 +7,8 @@ export default class Home extends Component {
       DataisLoaded: false
     };
   }
-
   componentDidMount() {
-    fetch(
-      "https://jsonplaceholder.typicode.com/users")
+    fetch("")
       .then((res) => res.json())
       .then((json) => {
         this.setState({
@@ -25,11 +22,8 @@ export default class Home extends Component {
     if (!DataisLoaded)
 
       return (
-
         <div className="container mt-3">
-
           <h2>Documents List</h2>
-
           <table class="table table-dark table-hover">
             <thead>
               <tr>
@@ -40,21 +34,16 @@ export default class Home extends Component {
               </tr>
             </thead>
             <tbody>
-              {items.map((item) => {
-                return
+              {items.map((item) => (
                 <tr key={item.id}>
                   <td>{item.username}</td>
                   <td>{item.docname}</td>
                   <td>{ }</td>
                 </tr>
-              })}
+              ))}
             </tbody>
           </table>
-
-
-
         </div>
-
       );
   }
 }

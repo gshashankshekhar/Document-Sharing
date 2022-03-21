@@ -154,14 +154,26 @@ export default class Register extends Component {
                     validations={[required, vpassword]}
                   />
                 </div>
+                <div className="form-check">
+                  <input className="form-check-input" type="checkbox" id="check1" name="admin" value="something" ></input>
+                  <label className="form-check-label">Admin</label>
+                </div>
+                <div className="form-check">
+                  <input className="form-check-input" type="checkbox" id="check1" name="user" value="something" ></input>
+                  <label className="form-check-label">User</label>
+                </div>
+                <div className="form-check">
+                  <input className="form-check-input" type="checkbox" id="check1" name="reviewer" value="something" ></input>
+                  <label className="form-check-label">Reviewer</label>
+                </div>
                 <br></br>
                 <div className="form-group">
                   <button className="btn btn-primary btn-block">Sign Up</button>
                 </div>
                 <div>
-              Already have an account click
-              <a href='/login'> Login. </a>
-            </div>
+                  Already have an account click
+                  <a href='/login'> Login. </a>
+                </div>
               </div>
             )}
             {this.state.message && (

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 import "./App.css";
 import AuthService from "./services/auth.service";
 import Login from "./components/login.component";
@@ -37,56 +38,64 @@ class App extends Component {
     const { currentUser, showReviewerBoard, showAdminBoard } = this.state;
     return (
       <div>
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-          <a class="navbar-brand text-uppercase" href="/">Document Sharing Platform</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
+
+        <nav className="navbar navbar-expand-md ">
+        <div className="container-fluid">
+          <a className="navbar-brand text-uppercase" href="/">Document Sharing Platform</a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <div class="navbar-nav ">
-            <li class="nav-item">
-              <a class="nav-link" href="/home">Home</a>
-            </li>
-            {showReviewerBoard && (
+          <div className="collapse navbar-collapse" id="collapsibleNavbar">
+            <div className="navbar-nav ">
               <li className="nav-item">
-                <a class="nav-link" href="/mod">Reviewer Board</a>
+                <a className="nav-link" href="/home">Home</a>
               </li>
-            )}
-            {showAdminBoard && (
-              <li className="nav-item">
-                <a class="nav-link" href="/admin">Admin Board</a>
-              </li>
-            )}
-            {currentUser && (
-              <li className="nav-item">
-                <a class="nav-link" href="/user">User</a>
-              </li>
+              {showReviewerBoard && (
+                <li className="nav-item">
+                  <a className="nav-link" href="/mod">Reviewer Board</a>
+                </li>
+              )}
+              {showAdminBoard && (
+                <div className="navbar-nav ">
+                  <li className="nav-item">
+                    <a className="nav-link" href="/admin">Admin Board</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="/register">Add User</a>
+                  </li>
+                </div>
+              )}
+              {currentUser && (
+                <li className="nav-item">
+                  <a className="nav-link" href="/user">Dashboard</a>
+                </li>
+              )}
+            </div>
+            {currentUser ? (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <a className="nav-link" href="/profile">{currentUser.username}</a>
+                </li>
+                <li className="nav-item">
+                  <a href="/login" className="nav-link" onClick={this.logOut}>
+                    LogOut
+                  </a>
+                </li>
+              </div>
+            ) : (
+              <div className="navbar-nav">
+                <li className="nav-item">
+                  <a className="nav-link" href="/login">Login</a>
+                </li>
+                {/* <li className="nav-item">
+                <a className="nav-link" href="/register">Sign Up</a>
+              </li> */}
+              </div>
             )}
           </div>
-          {currentUser ? (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <a class="nav-link" href="/profile">{currentUser.username}</a>
-              </li>
-              <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
-                </a>
-              </li>
-            </div>
-          ) : (
-            <div className="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/register">Sign Up</a>
-              </li>
-            </div>
-          )}
-          </div>  
+          </div>
         </nav>
-                <div className="container mt-3">
+        <div className="container mt-3">
           <Switch>
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login" component={Login} />

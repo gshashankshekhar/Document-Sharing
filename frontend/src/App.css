@@ -1,8 +1,7 @@
 
 * {
-  
-  
-}
+  font-family: 'Lora', serif;
+  }
 label {
   display: block;
   margin-top: 10px;
@@ -34,5 +33,13 @@ label {
 }
 .navbar{
   padding-left: 20px;
- 
+  background-color: rgb(128, 191, 216);
+  padding: 0%;
+  }
+.navbar-brand{
+  color: #f7f7f7;
+}
+.nav-link{
+  color: #f7f7f7;
+  font-size: 20px;
 }
